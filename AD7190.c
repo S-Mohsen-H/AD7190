@@ -229,4 +229,5 @@ uint32_t AD7190_TemperatureRead(AD7190_SpiDriver_Typedef* AD7190_SpiDriver) {
   temperature = (uint32_t) dataReg;
 
   return temperature;
+  // return dataReg;
 }

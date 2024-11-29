@@ -110,6 +110,8 @@ void AD7190_WaitRdyGoLow(AD7190_SpiDriver_Typedef* AD7190_SpiDriver) {
 
 /***************************************************************************//**
  * @brief Selects the channel to be enabled.
+ * 
+ * @note Multiple channels can be selected with AD7190_CONF_CHAN( ch1 | ch4 | ... ) 
  *
  * @param channel - Selects a channel.
  *  
@@ -121,7 +123,7 @@ void AD7190_ChannelSelect(AD7190_SpiDriver_Typedef* AD7190_SpiDriver, uint16_t c
 
   oldRegValue = AD7190_GetRegisterValue(AD7190_SpiDriver, AD7190_REG_CONF, 3, 1);
   oldRegValue &= ~(AD7190_CONF_CHAN(0xFF));
-  newRegValue = oldRegValue | AD7190_CONF_CHAN(1 << channel);   
+  newRegValue = oldRegValue | AD7190_CONF_CHAN(channel);   
   AD7190_SetRegisterValue(AD7190_SpiDriver, AD7190_REG_CONF, newRegValue, 3, 1);
 }
 

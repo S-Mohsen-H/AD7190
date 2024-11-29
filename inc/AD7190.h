@@ -73,7 +73,7 @@
 /* Configuration Register Bit Designations (AD7190_REG_CONF) */
 #define AD7190_CONF_CHOP        (1 << 23)            // CHOP enable.
 #define AD7190_CONF_REFSEL      (1 << 20)            // REFIN1/REFIN2 Reference Select.
-#define AD7190_CONF_CHAN(x)     (((x) & 0xFF) << 8)  // Channel select.
+#define AD7190_CONF_CHAN(x)     ((x) << 8)             // Channel select.
 #define AD7190_CONF_BURN        (1 << 7)             // Burnout current enable.
 #define AD7190_CONF_REFDET      (1 << 6)             // Reference detect enable.
 #define AD7190_CONF_BUF         (1 << 4)             // Buffered Mode Enable.
@@ -81,14 +81,15 @@
 #define AD7190_CONF_GAIN(x)     ((x) & 0x7)          // Gain Select.
 
 /* Configuration Register: AD7190_CONF_CHAN(x) options */
-#define AD7190_CH_AIN1P_AIN2M      0 // AIN1(+) - AIN2(-)       
-#define AD7190_CH_AIN3P_AIN4M      1 // AIN3(+) - AIN4(-)       
-#define AD7190_CH_TEMP_SENSOR      2 // Temperature sensor       
-#define AD7190_CH_AIN2P_AIN2M      3 // AIN2(+) - AIN2(-)       
-#define AD7190_CH_AIN1P_AINCOM     4 // AIN1(+) - AINCOM       
-#define AD7190_CH_AIN2P_AINCOM     5 // AIN2(+) - AINCOM       
-#define AD7190_CH_AIN3P_AINCOM     6 // AIN3(+) - AINCOM       
-#define AD7190_CH_AIN4P_AINCOM     7 // AIN4(+) - AINCOM
+/* Multiple channels can be selected with AD7190_CONF_CHAN( ch1 | ch4 | ... ) */
+#define AD7190_CH_AIN1P_AIN2M      1 << 0 // AIN1(+) - AIN2(-)       
+#define AD7190_CH_AIN3P_AIN4M      1 << 1 // AIN3(+) - AIN4(-)       
+#define AD7190_CH_TEMP_SENSOR      1 << 2 // Temperature sensor       
+#define AD7190_CH_AIN2P_AIN2M      1 << 3 // AIN2(+) - AIN2(-)       
+#define AD7190_CH_AIN1P_AINCOM     1 << 4 // AIN1(+) - AINCOM       
+#define AD7190_CH_AIN2P_AINCOM     1 << 5 // AIN2(+) - AINCOM       
+#define AD7190_CH_AIN3P_AINCOM     1 << 6 // AIN3(+) - AINCOM       
+#define AD7190_CH_AIN4P_AINCOM     1 << 7 // AIN4(+) - AINCOM
 
 /* Configuration Register: AD7190_CONF_GAIN(x) options */
 //                                             ADC Input Range (5 V Reference)
